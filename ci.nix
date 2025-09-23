@@ -10,7 +10,9 @@
 # which this is possible.
 
 {
-  pkgs ? import <nixpkgs> { },
+  pkgs ? import <nixpkgs> {  overlays = [
+      (import (builtins.fetchTarball {url="https://github.com/oxalica/rust-overlay/archive/d2bac276ac7e669a1f09c48614538a37e3eb6d0f.zip"; sha256="sha256-kx2uELmVnAbiekj/YFfWR26OXqXedImkhe2ocnbumTA=";}))
+    ]; },
 }:
 
 with builtins;
