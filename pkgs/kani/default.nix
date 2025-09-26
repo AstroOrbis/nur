@@ -70,6 +70,12 @@ rustPlatform.buildRustPackage rec {
 
   patches = [ ./deps.patch ];
 
+  # Solver backends! At least CBMC is required - z3 is optional but reccomended
+  buildInputs = [
+    pkgs.cbmc
+    pkgs.z3
+  ];
+
   postInstall = ''
     mkdir -p $out/lib/
     ${rsync}/bin/rsync -av ${kani-home}/ $out/lib/${version} --perms --chmod=D+rw,F+rw
