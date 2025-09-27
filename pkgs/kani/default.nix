@@ -70,10 +70,11 @@ rustPlatform.buildRustPackage rec {
 
   patches = [ ./deps.patch ];
 
-  # Solver backends! At least CBMC is required - z3 is optional but reccomended
-  buildInputs = [
-    pkgs.cbmc
-    pkgs.z3
+  # GCC & solver backends! At least CBMC is required - z3 is optional but reccomended
+  buildInputs = with pkgs; [
+    gcc
+    cbmc
+    z3
   ];
 
   postInstall = ''
