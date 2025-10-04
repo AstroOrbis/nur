@@ -24,4 +24,5 @@ rec {
   hayase = pkgs.callPackage ./pkgs/hayase { };
   kani = pkgs.callPackage ./pkgs/kani { };
   kochmorse = pkgs.libsForQt5.callPackage ./pkgs/kochmorse { };
+  gdsdecomp = pkgs.callPackage ./pkgs/gdsdecomp { };
 }
