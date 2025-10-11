@@ -17,6 +17,10 @@ stdenv.mkDerivation rec {
     hash = "sha256-88LHQ3kUQPyog1LPkGcWQ3vt/s0gOynTP6f8YX/3kTM=";
   };
 
+  patches = [
+  ./cmake.patch
+  ];
+
   nativeBuildInputs = with pkgs; [
     cmake
     pkg-config
