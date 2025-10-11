@@ -1,15 +1,6 @@
 # Defaulting to <nixpkgs> lets us use nix-build -A pkgname, but we need to take it as argument
 {
-  pkgs ? import <nixpkgs> {
-    overlays = [
-      (import (
-        builtins.fetchTarball {
-          url = "https://github.com/oxalica/rust-overlay/archive/d2bac276ac7e669a1f09c48614538a37e3eb6d0f.zip";
-          sha256 = "sha256-kx2uELmVnAbiekj/YFfWR26OXqXedImkhe2ocnbumTA=";
-        }
-      ))
-    ];
-  },
+  pkgs ? import <nixpkgs> { },
 }:
 rec {
   # The `lib`, `modules`, and `overlays` names are special

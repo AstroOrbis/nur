@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
   src = pkgs.fetchzip {
     url = "https://github.com/GDRETools/gdsdecomp/releases/download/${version}/GDRE_tools-${version}-linux.zip";
     hash = "sha256-Ecyy/izBw6mXAk/jgsmDrzNr4OjamPjyGnu1dmyqO8k=";
-    stripRoot=false;
+    stripRoot = false;
   };
 
   installPhase = ''
@@ -21,7 +21,6 @@ stdenv.mkDerivation rec {
     mv gdre_tools.pck $out/bin/gdre_tools.pck
     chmod a+x $out/bin/gdre_tools
   '';
-
 
   nativeBuildInputs = with pkgs; [
     autoPatchelfHook
