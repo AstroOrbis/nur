@@ -16,4 +16,5 @@ rec {
   kani = pkgs.callPackage ./pkgs/kani { };
   kochmorse = pkgs.libsForQt5.callPackage ./pkgs/kochmorse { };
   gdsdecomp = pkgs.callPackage ./pkgs/gdsdecomp { };
+  tracy = pkgs.callPackage ./pkgs/tracy { };
 }
