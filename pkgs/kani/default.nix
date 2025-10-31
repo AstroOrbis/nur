@@ -9,13 +9,14 @@
   autoPatchelfHook,
   makeRustPlatform,
   pkgs,
+  fetchzip,
   lib,
   ...
 }:
 let
   rustHome =
     (pkgs.extend (
-      import (fetchTarball {
+      import (fetchzip {
         url = "https://github.com/oxalica/rust-overlay/archive/d2bac276ac7e669a1f09c48614538a37e3eb6d0f.zip";
         sha256 = "sha256-kx2uELmVnAbiekj/YFfWR26OXqXedImkhe2ocnbumTA=";
       })
@@ -34,11 +35,17 @@ let
     rustc = rustHome;
   };
 
+in
+rustPlatform.buildRustPackage rec {
+  pname = "kani";
+
+  version = "kani-0.65.0";
+
   kani-home = stdenv.mkDerivation {
     name = "kani-home";
 
     src = fetchTarball {
-      url = "https://github.com/model-checking/kani/releases/download/kani-0.65.0/kani-0.65.0-x86_64-unknown-linux-gnu.tar.gz";
+      url = "https://github.com/model-checking/kani/releases/download/${version}/${version}-x86_64-unknown-linux-gnu.tar.gz";
       sha256 = "sha256-jQMm/hqN0X/Vd08supdd3ID7dHIYQTLcLddpWdcA0Xc=";
     };
 
@@ -59,12 +66,6 @@ let
     '';
   };
 
-in
-rustPlatform.buildRustPackage rec {
-  pname = "kani";
-
-  version = "kani-0.65.0";
-
   src = pkgs.fetchFromGitHub {
     owner = "model-checking";
     repo = "kani";
@@ -77,11 +78,10 @@ rustPlatform.buildRustPackage rec {
 
   patches = [ ./deps.patch ];
 
-  # GCC & solver backends! At least CBMC is required - z3 is optional but reccomended
+  # GCC & solver backends! At least CBMC is required - z3 is optional
   buildInputs = with pkgs; [
     gcc
     cbmc
-    z3
   ];
 
   postInstall = ''
