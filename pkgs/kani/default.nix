@@ -9,16 +9,15 @@
   autoPatchelfHook,
   makeRustPlatform,
   pkgs,
-  fetchzip,
   lib,
   ...
 }:
 let
   rustHome =
     (pkgs.extend (
-      import (fetchzip {
-        url = "https://github.com/oxalica/rust-overlay/archive/d2bac276ac7e669a1f09c48614538a37e3eb6d0f.zip";
-        sha256 = "sha256-kx2uELmVnAbiekj/YFfWR26OXqXedImkhe2ocnbumTA=";
+      import (fetchTarball {
+        url = "https://github.com/oxalica/rust-overlay/archive/6604534e44090c917db714faa58d47861657690c.zip";
+        sha256 = "sha256-6fCtyVdTzoQejwoextAu7dCLoy5fyD3WVh+Qm7t2Nhg=";
       })
     )).rust-bin.nightly."2025-08-06".minimal.override
       {
@@ -40,6 +39,34 @@ rustPlatform.buildRustPackage rec {
   pname = "kani";
 
   version = "kani-0.65.0";
+
+  src = pkgs.fetchFromGitHub {
+    owner = "model-checking";
+    repo = "kani";
+    rev = version;
+    hash = "sha256-xle2JCn0HjrWrIkaWbm5mGm0+hPGClMzt3PEO7OgAqg=";
+    fetchSubmodules = true;
+  };
+
+  cargoDeps = rustPlatform.fetchCargoVendor {
+    inherit
+      patches
+      pname
+      version
+      src
+      ;
+    hash = "sha256-uhPFy/PwtnGXj1xImoYZU+4Nfryy/A8wxOfvqdXxFYo=";
+  };
+
+  nativeBuildInputs = [ makeWrapper ];
+
+  patches = [ ./deps.patch ];
+
+  # GCC & solver backends! At least CBMC is required - z3 is optional
+  buildInputs = with pkgs; [
+    gcc
+    cbmc
+  ];
 
   kani-home = stdenv.mkDerivation {
     name = "kani-home";
@@ -66,24 +93,6 @@ rustPlatform.buildRustPackage rec {
     '';
   };
 
-  src = pkgs.fetchFromGitHub {
-    owner = "model-checking";
-    repo = "kani";
-    rev = version;
-    hash = "sha256-xle2JCn0HjrWrIkaWbm5mGm0+hPGClMzt3PEO7OgAqg=";
-    fetchSubmodules = true;
-  };
-
-  nativeBuildInputs = [ makeWrapper ];
-
-  patches = [ ./deps.patch ];
-
-  # GCC & solver backends! At least CBMC is required - z3 is optional
-  buildInputs = with pkgs; [
-    gcc
-    cbmc
-  ];
-
   postInstall = ''
     mkdir -p $out/lib/
     ${rsync}/bin/rsync -av ${kani-home}/ $out/lib/${version} --perms --chmod=D+rw,F+rw
@@ -95,16 +104,6 @@ rustPlatform.buildRustPackage rec {
     wrapProgram $out/bin/kani --set KANI_HOME $out/lib/
     wrapProgram $out/bin/cargo-kani --set KANI_HOME $out/lib/
   '';
-
-  cargoDeps = rustPlatform.fetchCargoVendor {
-    inherit
-      patches
-      pname
-      version
-      src
-      ;
-    hash = "sha256-uhPFy/PwtnGXj1xImoYZU+4Nfryy/A8wxOfvqdXxFYo=";
-  };
 
   env = {
     RUSTUP_HOME = "${rustHome}";
