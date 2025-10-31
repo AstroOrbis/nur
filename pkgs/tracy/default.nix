@@ -1,4 +1,4 @@
-# This was copied over from https://github.com/MonaMayrhofer/nixpkgs/commit/f71db25afbbef6a89e2e3fcabc6d7fb18459f67a 
+# This was copied over from https://github.com/MonaMayrhofer/nixpkgs/commit/f71db25afbbef6a89e2e3fcabc6d7fb18459f67a
 # AKA nixpkgs PR 428369, for ease of access (not needing to pull in an entire new nixpkgs repo). Credits go to them!
 {
   lib,

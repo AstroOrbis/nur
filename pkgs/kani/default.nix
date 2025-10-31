@@ -13,25 +13,21 @@
   ...
 }:
 let
-
-  rtb = fetchTarball {
-    url = "https://github.com/oxalica/rust-overlay/archive/d2bac276ac7e669a1f09c48614538a37e3eb6d0f.zip";
-    sha256 = "sha256-kx2uELmVnAbiekj/YFfWR26OXqXedImkhe2ocnbumTA=";
-
-  };
-
-  rust-overlay = import (rtb);
-
-  pkgs-with-rust = pkgs.extend rust-overlay;
-
-  rustHome = pkgs-with-rust.rust-bin.nightly."2025-07-02".default.override {
-    extensions = [
-      "rustc-dev"
-      "rust-src"
-      "llvm-tools"
-      "rustfmt"
-    ];
-  };
+  rustHome =
+    (pkgs.extend (
+      import (fetchTarball {
+        url = "https://github.com/oxalica/rust-overlay/archive/d2bac276ac7e669a1f09c48614538a37e3eb6d0f.zip";
+        sha256 = "sha256-kx2uELmVnAbiekj/YFfWR26OXqXedImkhe2ocnbumTA=";
+      })
+    )).rust-bin.nightly."2025-08-06".default.override
+      {
+        extensions = [
+          "rustc-dev"
+          "rust-src"
+          "llvm-tools"
+          "rustfmt"
+        ];
+      };
 
   rustPlatform = makeRustPlatform {
     cargo = rustHome;
