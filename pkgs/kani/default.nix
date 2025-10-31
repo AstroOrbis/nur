@@ -38,8 +38,8 @@ let
     name = "kani-home";
 
     src = fetchTarball {
-      url = "https://github.com/model-checking/kani/releases/download/kani-0.64.0/kani-0.64.0-x86_64-unknown-linux-gnu.tar.gz";
-      sha256 = "sha256-RP38iCbQWoQyAYtq2Nnkm6iFhXtVQ4rbHaKyCFMcIsQ=";
+      url = "https://github.com/model-checking/kani/releases/download/kani-0.65.0/kani-0.65.0-x86_64-unknown-linux-gnu.tar.gz";
+      sha256 = "sha256-jQMm/hqN0X/Vd08supdd3ID7dHIYQTLcLddpWdcA0Xc=";
     };
 
     buildInputs = [
@@ -63,13 +63,13 @@ in
 rustPlatform.buildRustPackage rec {
   pname = "kani";
 
-  version = "kani-0.64.0";
+  version = "kani-0.65.0";
 
   src = pkgs.fetchFromGitHub {
     owner = "model-checking";
     repo = "kani";
-    rev = "96f7e59a8c8058f3edbdcc4d52940e376d54ff09";
-    hash = "sha256-8UyAO9eTwcUtOktSJ9QdYpccgDRefWDTIewjAwvkhdA=";
+    rev = version;
+    hash = "sha256-xle2JCn0HjrWrIkaWbm5mGm0+hPGClMzt3PEO7OgAqg=";
     fetchSubmodules = true;
   };
 
@@ -103,7 +103,7 @@ rustPlatform.buildRustPackage rec {
       version
       src
       ;
-    hash = "sha256-1MfK2O4F0YJZJgDRxwAQ8vRM4Xgx9i1Xl1+InH6r2b4=";
+    hash = "sha256-uhPFy/PwtnGXj1xImoYZU+4Nfryy/A8wxOfvqdXxFYo=";
   };
 
   env = {
