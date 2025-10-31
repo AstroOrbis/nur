@@ -19,7 +19,7 @@ let
         url = "https://github.com/oxalica/rust-overlay/archive/d2bac276ac7e669a1f09c48614538a37e3eb6d0f.zip";
         sha256 = "sha256-kx2uELmVnAbiekj/YFfWR26OXqXedImkhe2ocnbumTA=";
       })
-    )).rust-bin.nightly."2025-08-06".default.override
+    )).rust-bin.nightly."2025-08-06".minimal.override
       {
         extensions = [
           "rustc-dev"
