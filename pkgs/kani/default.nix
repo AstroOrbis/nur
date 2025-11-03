@@ -18,7 +18,7 @@ let
     sha256 = "sha256-6fCtyVdTzoQejwoextAu7dCLoy5fyD3WVh+Qm7t2Nhg=";
   };
 
-  rustHome = (pkgs.extend roverlay).rust-bin.nightly."2025-08-06".minimal.override {
+  rustHome = (pkgs.extend (import roverlay)).rust-bin.nightly."2025-08-06".minimal.override {
     extensions = [
       "rustc-dev"
       "rust-src"
