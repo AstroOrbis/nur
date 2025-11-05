@@ -69,7 +69,7 @@ rustPlatform.buildRustPackage rec {
   kani-home = stdenv.mkDerivation {
     name = "kani-home";
 
-    src = fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://github.com/model-checking/kani/releases/download/${version}/${version}-x86_64-unknown-linux-gnu.tar.gz";
       sha256 = "sha256-jQMm/hqN0X/Vd08supdd3ID7dHIYQTLcLddpWdcA0Xc=";
     };
