@@ -47,8 +47,8 @@ buildDotnetModule rec {
 
   enableParallelBuilding = false;
 
-  dotnet-sdk = dotnetCorePackages.sdk_9_0;
-  dotnet-runtime = dotnetCorePackages.runtime_9_0;
+  dotnet-sdk = dotnetCorePackages.sdk_10_0;
+  dotnet-runtime = dotnetCorePackages.runtime_10_0;
 
   nugetDeps = ./deps.json;
 
