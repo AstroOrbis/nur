@@ -37,7 +37,7 @@ buildDotnetModule rec {
     owner = "Ryubing";
     repo = "Ryujinx";
     tag = "Canary-${version}";
-    hash = "sha256-QnKQEaz01HJVD2zV1Rv5Y2B2iOPOl65kK6X/7J0ccbk=";
+    hash = "sha256-30f6MtRUAUT2Jqb42QKV3jOKxgs7Qnk4nhNoKzuEbHw=";
   };
 
   nativeBuildInputs = lib.optional stdenv.hostPlatform.isDarwin [
