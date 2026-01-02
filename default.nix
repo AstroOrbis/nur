@@ -20,4 +20,5 @@ rec {
   ryubing = pkgs.callPackage ./pkgs/ryubing { };
   hexagon = pkgs.callPackage ./pkgs/hexagon { };
   libspeedhack = pkgs.callPackage ./pkgs/libspeedhack { };
+  en-croissant = pkgs.callPackage ./pkgs/en-croissant { };
 }
