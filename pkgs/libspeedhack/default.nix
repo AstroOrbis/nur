@@ -27,4 +27,6 @@ stdenv.mkDerivation rec {
     license = licenses.mit;
   };
 
+  preferLocalBuild = true;
+
 }
