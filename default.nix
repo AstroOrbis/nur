@@ -11,7 +11,6 @@ rec {
   # And now, the packages
   agave-cli = pkgs.callPackage ./pkgs/agave-cli { inherit agave-platform-tools-bin; };
   agave-platform-tools-bin = pkgs.callPackage ./pkgs/agave-platform-tools-bin { };
-  solana-cli = pkgs.callPackage ./pkgs/solana-cli { };
   mtgatool-desktop = pkgs.callPackage ./pkgs/mtgatool-desktop { };
   # Hayase was recently DMCA'd
   # hayase = pkgs.callPackage ./pkgs/hayase { };
