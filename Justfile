@@ -11,4 +11,4 @@ check:
 baseflake := ".#legacyPackages.x86_64-linux."
 
 build pkg:
-  nix build {{baseflake}}{{pkg}}
+  nom build {{baseflake}}{{pkg}}

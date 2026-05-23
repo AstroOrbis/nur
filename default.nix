@@ -21,4 +21,6 @@ rec {
   hexagon = pkgs.callPackage ./pkgs/hexagon { };
   libspeedhack = pkgs.callPackage ./pkgs/libspeedhack { };
   en-croissant = pkgs.callPackage ./pkgs/en-croissant { };
+  objdiff = pkgs.callPackage ./pkgs/objdiff { };
+  ghidra_rootcubed = pkgs.callPackage ./pkgs/ghidra_rootcubed { };
 }
