@@ -36,7 +36,7 @@ jobs:
       with:
         upstream-cache: https://${{matrix.cachixName}}.cachix.org
     - name: Setup cachix
-      uses: cachix/cachix-action@v16
+      uses: cachix/cachix-action@v17
       with:
         name: ${{ matrix.cachixName }}
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
