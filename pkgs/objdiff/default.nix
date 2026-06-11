@@ -23,7 +23,7 @@
 let
 
   version = "v3.7.1";
-  cargoHash = "sha256-KlNA9JleBd5TwpeVZrAhAL2nKyp28hKiQ59qyZq7nKg=";
+  cargoHash = "sha256-uAnCg/g9I6RAmTsOq2kWPQRrwI3NcSFtLZtF5aRvL44=";
   src = fetchFromGitHub {
     owner = "encounter";
     repo = "objdiff";
